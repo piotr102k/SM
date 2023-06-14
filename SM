@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        side=20;
+        sideside=30
+        nrin=0
+        defaultt=0
+        dafaultl=0
+        bombp=5
+
+        bombtab=[]
+        for(i=0;i!=side*bombp;i++){
+            a=Math.floor(Math.random() * (side*side ))
+            while(a in bombtab)
+            {
+                a=Math.floor(Math.random() * (side*side ))
+            }
+            bombtab.push(a)
+        }
+
+        console.log(bombtab)
+        t=defaultt
+        l=dafaultl
+        for(i=0;i!=side;i++){
+            for(u=0;u!=side;u++){
+                generate(i,u);
+                t+=sideside
+                nrin+=1
+            }
+            l+=sideside
+            t=defaultt
+        }
+        function generate(a,b){
+            newDiv = document.createElement("div");
+            newDiv.style.width=sideside+"px";
+            newDiv.style.height=sideside+"px";
+            newDiv.style.position="absolute"
+            newDiv.id=nrin
+            newDiv.style.backgroundColor="gray"
+            newDiv.class="sq"
+            newDiv.style.border=1+"px solid black";
+            newDiv.style.marginLeft=l+"px";
+            newDiv.style.marginTop=t+"px";
+            document.body.appendChild(newDiv);
+        }
+        const square = document.querySelectorAll('div');
+        square.forEach(squar=>{
+            squar.addEventListener("click", check);
+            
+        });
+
+       function check(){
+           ids=parseInt(this.id)
+           console.log(ids)
+        if(bombtab.includes(ids)){
+            console.log("death")
+            document.getElementById(ids).style.backgroundColor="black"
+            death();
+            
+        }
+        else{
+            console.log("nie death")
+            document.getElementById(ids).style.backgroundColor="white"
+            document.getElementById(ids).innerHTML=number(ids);
+        }
+       }
+       function number(idd){
+        g=0
+        if(idd>side-1 && idd<side*side-side && idd%side!=0 && idd%side!=(side-1))
+        {
+            if(bombtab.includes(ids+1)){
+            g++;
+        }
+        if(bombtab.includes(ids-1)){
+            g++;
+        }
+        if(bombtab.includes(ids+side)){
+            g++;
+        }
+        if(bombtab.includes(ids-side)){
+            g++;
+        }
+        if(bombtab.includes(ids+side+1)){
+            g++;
+        }
+        if(bombtab.includes(ids+side-1)){
+            g++;
+        }
+        if(bombtab.includes(ids-side+1)){
+            g++;
+        }
+        if(bombtab.includes(ids-side-1)){
+            g++;
+        }
+        }
+        else if(idd==0){
+            if(bombtab.includes(ids+1)){
+            g++;
+        } 
+        if(bombtab.includes(ids+side)){
+            g++;
+        } 
+        if(bombtab.includes(ids+side+1)){
+            g++;
+        } 
+        }
+        else if(idd==side-1){
+            if(bombtab.includes(side-2)){
+            g++;
+        } 
+        if(bombtab.includes(side+side-2)){
+            g++;
+        } 
+        if(bombtab.includes(side+side-1)){
+            g++;
+        } 
+        }
+        else if(idd==side*side-1){
+            if(bombtab.includes(side*side-side-1)){
+            g++;
+        } 
+        if(bombtab.includes(side*side-2)){
+            g++;
+        } 
+        if(bombtab.includes(side*side-side-2)){
+            g++;
+        } 
+        }
+        else if(idd==side*side-side){
+            if(bombtab.includes(side*side-side+1)){
+            g++;
+        } 
+        if(bombtab.includes(side*side+1-side-side)){
+            g++;
+        } 
+        if(bombtab.includes(side*side-side-side)){
+            g++;
+        } 
+        }
+        else if(idd<side-1){
+            if(bombtab.includes(ids+1)){
+            g++;
+        }
+        if(bombtab.includes(ids-1)){
+            g++;
+        }
+        if(bombtab.includes(ids+side)){
+            g++;
+        }
+        if(bombtab.includes(ids+side+1)){
+            g++;
+        }
+        if(bombtab.includes(ids+side-1)){
+            g++;
+        }
+        }   
+        else if(idd%side==0){
+            if(bombtab.includes(ids+1)){
+            g++;
+        }
+        if(bombtab.includes(ids+side)){
+            g++;
+        }
+        if(bombtab.includes(ids-side)){
+            g++;
+        }
+        if(bombtab.includes(ids+side+1)){
+            g++;
+        }
+
+        if(bombtab.includes(ids-side+1)){
+            g++;
+        }
+
+        }
+        else if(idd%side==(side-1)){
+        if(bombtab.includes(ids-1)){
+            g++;
+        }
+        if(bombtab.includes(ids+side)){
+            g++;
+        }
+        if(bombtab.includes(ids-side)){
+            g++;
+        }
+
+        if(bombtab.includes(ids+side-1)){
+            g++;
+        }
+
+        if(bombtab.includes(ids-side-1)){
+            g++;
+        }
+        }
+        else if(idd>side*side-side){
+            if(bombtab.includes(ids+1)){
+            g++;
+        }
+        if(bombtab.includes(ids-1)){
+            g++;
+        }
+
+        if(bombtab.includes(ids-side)){
+            g++;
+        }
+
+
+        if(bombtab.includes(ids-side+1)){
+            g++;
+        }
+        if(bombtab.includes(ids-side-1)){
+            g++;
+        }
+        }
+
+
+
+        return g;
+       }
+       function death(){
+           for(i=0;i!=bombtab.length;i++){
+            document.getElementById(bombtab[i]).style.backgroundColor="black"
+           }
+       }
+      
+    </script>
+    </div>
+</body>
+</html>
